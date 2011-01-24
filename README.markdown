@@ -6,5 +6,5 @@ Wanting to learn some stuff, and Twitter seems like a simple enough application 
 Architecture
 ------------
 
-User info is stored in MongoDB
-Freets are stored in Redis
+* User info is stored in MongoDB
+* Freets are stored in Redis
