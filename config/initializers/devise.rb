@@ -1,0 +1,1 @@
+require 'devise/orm/mongoid'
