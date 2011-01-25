@@ -2,11 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 	def create_connection
-		@conn = Redis.new
-		puts @conn.inspect
+		@redis = Redis.new
 	end
 	
 	def drop_connection
-		@conn.quit if @conn
+		@redis.quit if @redis
 	end
 end

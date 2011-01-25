@@ -25,6 +25,18 @@ su = Admin.create! :email => 'root@fritter.local', :password => 'rootroot', :pas
 	FollowConnection.create! :followee_id => User.first(:conditions => {:nickname => "user1"})._id, :follower_id => User.first(:conditions => {:nickname => "user#{i}"})._id	
 }
 
+usr1 = User.first(:conditions => {:nickname => "user1"})
 
+(1..10).each do |i| 
+	f = Freet.create!(:body => "Hello, World #{i}")
+	usr1.freets << f
+	
+	redis.lpush usr1._id, f._id
+	usr1.followers.each { |r| redis.lpush r._id, f._id }
+end
+
+(1..4).each do |i|
+	puts redis.llen(User.first(:conditions => {:nickname => "user#{i}"})._id.to_s)
+end
 
 redis.quit

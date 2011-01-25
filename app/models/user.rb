@@ -12,4 +12,12 @@ class User
 	index :nickname
 
 	references_many :freets
+	
+	def followers
+		FollowConnection.find(:all, :conditions => {:followee_id => self._id}).collect { |f| f.follower }		
+	end
+	
+	def following
+		FollowConnection.find(:all, :conditions => {:follower_id => self._id}).collect { |f| f.follows }		
+	end
 end

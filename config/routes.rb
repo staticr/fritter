@@ -1,4 +1,8 @@
 Fritter::Application.routes.draw do
+  post "blurt/create"
+
+  get "home/home"
+
   get "home/index"
 
   devise_for :admins
