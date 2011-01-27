@@ -1,0 +1,10 @@
+%h1= "@#{@profile.nickname}"
+- unless @is_current_user
+	- if @is_following
+		%form{:action => "/profile/#{@profile.nickname}/unfollow", :method => 'post'}
+			%input{:type => "hidden", :name => "authenticity_token", :value => "#{form_authenticity_token}"}
+			%input{:type => 'submit', :value => 'Unfollow'}
+	- else
+		%form{:action => "/profile/#{@profile.nickname}/follow", :method => 'post'}
+			%input{:type => "hidden", :name => "authenticity_token", :value => "#{form_authenticity_token}"}
+			%input{:type => 'submit', :value => 'Follow'}

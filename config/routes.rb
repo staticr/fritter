@@ -1,9 +1,11 @@
 Fritter::Application.routes.draw do
+  match "profile/:nickname" => 'profile#show'
+  match "profile/:nickname/follow" => 'profile#follow'
+  match "profile/:nickname/unfollow" => 'profile#unfollow'
+
   post "blurt/create"
 
-  get "home/home"
-
-  get "home/index"
+  match "home" => 'home#home'
 
   devise_for :admins
 

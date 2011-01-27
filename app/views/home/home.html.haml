@@ -1,7 +1,8 @@
-%h1 My Home
+%h1= "@#{current_user.nickname}"
 %form{:action => '/blurt/create', :method => "POST"}
 	%input{:name => 'blurt', :id => 'blurt'}
 	%input{:type => 'Submit', :value => 'Blurt'}
 	%input{:type => "hidden", :name => "authenticity_token", :value => "#{form_authenticity_token}"}
 - @freets.each do |f|
-	%p= "#{f.body} from @#{f.user.nickname}"
+	%p
+		!= "#{f.body} from #{make_profile_url(f.user.nickname)}"
